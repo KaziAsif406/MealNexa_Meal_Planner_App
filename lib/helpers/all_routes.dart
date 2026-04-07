@@ -1,6 +1,10 @@
 // ignore_for_file: unused_element
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+
+import '../onboarding/onboarding_flow.dart';
+import '../welcome_screen.dart';
 
 
 final class Routes {
@@ -25,6 +29,10 @@ final class Routes {
   static const String homeScreen = '/home_screen';
   static const String navigationScreen = '/NavigationScreen';
   static const String profile = '/Profile';
+
+  // Onboarding Routes
+  static const String onboardingScreen = '/onboarding';
+  static const String welcomeScreen = '/welcome';
 }
 
 final class RouteGenerator {
@@ -76,6 +84,16 @@ final class RouteGenerator {
       //       ? CupertinoPageRoute(builder: (context) => const ProfileScreen())
       //       : _FadedTransitionRoute(
       //           widget: const ProfileScreen(), settings: settings);
+
+      case Routes.onboardingScreen:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(builder: (context) => const OnboardingFlow())
+            : _FadedTransitionRoute(widget: const OnboardingFlow(), settings: settings);
+
+      case Routes.welcomeScreen:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(builder: (context) => const WelcomeScreen())
+            : _FadedTransitionRoute(widget: const WelcomeScreen(), settings: settings);
 
       default:
         return null;
