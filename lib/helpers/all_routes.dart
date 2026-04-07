@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/sign_in.dart';
+import '../features/auth/sign_up/presentation/sign_up.dart';
 
 import '../features/onboarding/presentation/onboarding_flow.dart';
 
@@ -104,6 +105,12 @@ final class RouteGenerator {
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const SignInScreen())
             : _FadedTransitionRoute(widget: const SignInScreen(), settings: settings);
+
+      case Routes.signUpScreen:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(builder: (context) => const SignUpScreen())
+            : _FadedTransitionRoute(widget: const SignUpScreen(), settings: settings);
+
 
       default:
         return null;

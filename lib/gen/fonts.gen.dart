@@ -16,4 +16,7 @@ class FontFamily {
 
   /// Font family: Open Sans
   static const String openSans = 'Open Sans';
+
+  /// Font family: inter
+  static const String inter = 'inter';
 }

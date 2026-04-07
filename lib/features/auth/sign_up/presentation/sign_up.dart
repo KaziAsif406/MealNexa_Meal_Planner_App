@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:template_flutter/helpers/all_routes.dart';
 // import 'package:template_flutter/constants/text_font_style.dart';
 import '../../../../helpers/ui_helpers.dart';
-import '../../../../helpers/all_routes.dart';
-import 'widgets/sign_in_form.dart';
+import 'widgets/sign_up_form.dart';
 import '/gen/colors.gen.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  void _handleSignIn() => debugPrint('Sign in tapped');
+class _SignUpScreenState extends State<SignUpScreen> {
+  void _handleSignUp() => debugPrint('Sign up tapped');
 
-  void _handleForgotPassword() => debugPrint('Forgot password tapped');
-
-  void _handleSignUp() => Navigator.pushNamed(context, Routes.signUpScreen);
+  void _handleSignIn() => Navigator.pushNamed(context, Routes.signInScreen);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,7 @@ class _SignInScreenState extends State<SignInScreen> {
               // Header Section
               Center(
                 child: Text(
-                  'Welcome Back',
+                  'Create Account',
                   style: TextStyle(
                     fontSize: 32.sp,
                     fontWeight: FontWeight.w700,
@@ -45,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
               UIHelper.verticalSpace(8.h),
               Center(
                 child: Text(
-                  'Login to continue your healthy journey',
+                  'Start your healthy eating journey today',
                   //  style: TextFontStyl,
                   // style: TextStyle(
                   //   fontSize: 14.sp,
@@ -56,10 +54,9 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               UIHelper.verticalSpace(40.h),
               // Form Section
-              SignInForm(
-                onSignIn: _handleSignIn,
-                onForgotPassword: _handleForgotPassword,
+              SignUpForm(
                 onSignUp: _handleSignUp,
+                onSignIn: _handleSignIn,
               ),
             ],
           ),
