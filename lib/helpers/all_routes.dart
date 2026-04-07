@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/forgot_pass.dart';
+import 'package:template_flutter/features/auth/sign_in/presentation/reset_pass.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/sign_in.dart';
 import '../features/auth/sign_up/presentation/sign_up.dart';
 
@@ -30,7 +31,7 @@ final class Routes {
   static const String signUpScreen = '/signUp';
   static const String forgotPassScreen = '/forgotPassScreen';
   static const String otpScreen = '/OtpScreen';
-  static const String setPassword = '/SetPassword';
+  static const String setPassword = '/ResetPassword';
   //products_with_pagination
   static const String productsWithPagination = '/ProductsWithPagination';
   //ProductsScreen
@@ -117,6 +118,12 @@ final class RouteGenerator {
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const ForgotPassScreen())
             : _FadedTransitionRoute(widget: const ForgotPassScreen(), settings: settings);
+
+
+      case Routes.setPassword:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(builder: (context) => const ResetPassScreen())
+            : _FadedTransitionRoute(widget: const ResetPassScreen(), settings: settings);
 
 
       default:
