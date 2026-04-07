@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../common_widgets/custom_button.dart';
-import '../../gen/colors.gen.dart';
-import '../../helpers/all_routes.dart';
+import '../../../common_widgets/custom_button.dart';
+import '../../../gen/colors.gen.dart';
+import '../../../helpers/all_routes.dart';
 import 'widgets/onboarding_dots.dart';
 import 'widgets/onboarding_page.dart';
 
@@ -54,7 +54,7 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   }
 
   void _finishOnboarding() {
-    Navigator.of(context).pushReplacementNamed(Routes.welcomeScreen);
+    Navigator.of(context).pushReplacementNamed(Routes.signInScreen);
   }
 
   void _skipOnboarding() {

@@ -32,10 +32,15 @@ class CustomButton extends StatelessWidget {
   final Widget? trailing;
 
   static const Gradient _defaultGradient = LinearGradient(
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
-    colors: [AppColors.c05AD6E, AppColors.c2AA477],
-  );
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+  colors: [
+    AppColors.primaryColor, // left color
+    AppColors.c22C55E, // middle (light highlight)
+    AppColors.primaryColor, // right color (same or slightly different)
+  ],
+  stops: [0.1, 0.5, 0.9],
+);
 
   @override
   Widget build(BuildContext context) {

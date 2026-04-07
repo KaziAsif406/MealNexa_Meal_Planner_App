@@ -4,8 +4,9 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:template_flutter/features/auth/sign_in/presentation/sign_in.dart';
 
-import '../onboarding/presentation/onboarding_flow.dart';
+import '../features/onboarding/presentation/onboarding_flow.dart';
 import '../welcome_screen.dart';
 
 void navigateToOnboarding(BuildContext context) {
@@ -23,7 +24,7 @@ final class Routes {
   static Routes get instance => _routes;
 
   // Auth Routes
-  static const String loginScreen = '/logIn';
+  static const String signInScreen = '/signin';
   static const String signUpScreen = '/signUp';
   static const String forgotPWScreen = '/ForgotPWScreen';
   static const String otpScreen = '/OtpScreen';
@@ -104,6 +105,11 @@ final class RouteGenerator {
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const WelcomeScreen())
             : _FadedTransitionRoute(widget: const WelcomeScreen(), settings: settings);
+
+      case Routes.signInScreen:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(builder: (context) => const SignInScreen())
+            : _FadedTransitionRoute(widget: const SignInScreen(), settings: settings);
 
       default:
         return null;
