@@ -9,8 +9,8 @@ class CustomButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.width,
-    this.height = 52,
-    this.borderRadius = 30,
+    this.height = 48,
+    this.borderRadius = 11,
     this.gradient,
     this.textStyle,
     this.padding,
@@ -64,7 +64,7 @@ class CustomButton extends StatelessWidget {
               boxShadow: enabled
                   ? [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.12),
+                        color: Colors.black.withValues(alpha: 0.12),
                         blurRadius: 12,
                         offset: const Offset(0, 4),
                       ),

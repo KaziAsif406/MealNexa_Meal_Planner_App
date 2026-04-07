@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../common_widgets/custom_toast.dart';
+// import '../common_widgets/custom_toast.dart';
 
 class ErrorMessageHandler {
   static String getErrorMessage(dynamic error) {
@@ -81,8 +81,8 @@ class ErrorMessageHandler {
     }
   }
 
-  static void showErrorToast(dynamic error) {
-    final message = getErrorMessage(error);
-    // customToastMessage('Error', message);
-  }
+  // static void showErrorToast(dynamic error) {
+  //   final message = getErrorMessage(error);
+  //   // customToastMessage('Error', message);
+  // }
 }

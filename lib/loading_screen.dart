@@ -15,15 +15,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToOnboarding();
-  }
-
-  void _navigateToOnboarding() {
-    Timer(const Duration(seconds: 2), () {
-      if (mounted) {
-        Navigator.of(context).pushReplacementNamed(Routes.onboardingScreen);
-      }
-    });
+    navigateToOnboarding(context);
   }
 
   @override

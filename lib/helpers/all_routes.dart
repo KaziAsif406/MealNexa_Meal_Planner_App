@@ -1,10 +1,20 @@
 // ignore_for_file: unused_element
 
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
-import '../onboarding/onboarding_flow.dart';
+import '../onboarding/presentation/onboarding_flow.dart';
 import '../welcome_screen.dart';
+
+void navigateToOnboarding(BuildContext context) {
+  Timer(const Duration(seconds: 2), () {
+    if (context.mounted) {
+      Navigator.of(context).pushReplacementNamed(Routes.onboardingScreen);
+    }
+  });
+}
 
 
 final class Routes {

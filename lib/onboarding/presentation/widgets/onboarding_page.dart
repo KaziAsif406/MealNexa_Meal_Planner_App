@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../common_widgets/custom_button.dart';
-import '../../gen/colors.gen.dart';
+import '../../../gen/colors.gen.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({
@@ -10,8 +9,6 @@ class OnboardingPage extends StatelessWidget {
     required this.imageAsset,
     required this.title,
     required this.description,
-    required this.buttonLabel,
-    required this.onButtonTap,
     this.showSkip = true,
     this.onSkip,
   });
@@ -19,8 +16,6 @@ class OnboardingPage extends StatelessWidget {
   final String imageAsset;
   final String title;
   final String description;
-  final String buttonLabel;
-  final VoidCallback onButtonTap;
   final bool showSkip;
   final VoidCallback? onSkip;
 
@@ -46,13 +41,13 @@ class OnboardingPage extends StatelessWidget {
               if (showSkip && onSkip != null)
                 Positioned(
                   right: 20.w,
-                  top: 20.h,
+                  top: 50.h,
                   child: TextButton(
                     onPressed: onSkip,
                     style: TextButton.styleFrom(
                       foregroundColor: AppColors.c050505,
                       textStyle: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -85,11 +80,6 @@ class OnboardingPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 36.h),
-                CustomButton(
-                  label: buttonLabel,
-                  onPressed: onButtonTap,
-                  width: double.infinity,
-                ),
               ],
             ),
           ),

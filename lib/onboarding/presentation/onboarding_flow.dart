@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../common_widgets/custom_button.dart';
-import '../gen/colors.gen.dart';
-import '../helpers/all_routes.dart';
+import '../../common_widgets/custom_button.dart';
+import '../../gen/colors.gen.dart';
+import '../../helpers/all_routes.dart';
 import 'widgets/onboarding_dots.dart';
 import 'widgets/onboarding_page.dart';
 
@@ -64,42 +64,46 @@ class _OnboardingFlowState extends State<OnboardingFlow> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.cF5F5F7,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: _pages.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  final page = _pages[index];
-                  return OnboardingPage(
-                    imageAsset: page.imageAsset,
-                    title: page.title,
-                    description: page.description,
-                    buttonLabel: page.buttonLabel,
-                    showSkip: index < _pages.length - 1,
-                    onSkip: _skipOnboarding,
-                    onButtonTap: _goToNextPage,
-                  );
-                },
-              ),
+      backgroundColor: AppColors.scaffoldColor,
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: _pages.length,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPage = index;
+                });
+              },
+              itemBuilder: (context, index) {
+                final page = _pages[index];
+                return OnboardingPage(
+                  imageAsset: page.imageAsset,
+                  title: page.title,
+                  description: page.description,
+                  showSkip: index < _pages.length - 1,
+                  onSkip: _skipOnboarding,
+                );
+              },
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 24.h),
-              child: OnboardingDots(
-                count: _pages.length,
-                activeIndex: _currentPage,
-              ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 24.h),
+            child: OnboardingDots(
+              count: _pages.length,
+              activeIndex: _currentPage,
             ),
-          ],
-        ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+            child: CustomButton(
+              label: _pages[_currentPage].buttonLabel,
+              onPressed: _goToNextPage,
+              width: double.infinity,
+            ),
+          ),
+        ],
       ),
     );
   }
