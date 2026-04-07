@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:template_flutter/constants/text_font_style.dart';
+import 'package:template_flutter/helpers/ui_helpers.dart';
 import '/common_widgets/custom_button.dart';
 import '/common_widgets/custom_textform_field.dart';
 import '/constants/validator.dart';
@@ -62,7 +64,7 @@ class _SignInFormState extends State<SignInForm> {
             keyboardType: TextInputType.emailAddress,
             validator: emailValidator,
           ),
-          SizedBox(height: 24.h),
+          UIHelper.verticalSpace(24.h),
           CustomTextFormField(
             label: 'Password',
             hintText: 'Enter your password',
@@ -70,7 +72,7 @@ class _SignInFormState extends State<SignInForm> {
             obscureText: true,
             validator: passwordValidator,
           ),
-          SizedBox(height: 12.h),
+          UIHelper.verticalSpace(12.h),
           Align(
             alignment: Alignment.centerRight,
             child: GestureDetector(
@@ -81,20 +83,19 @@ class _SignInFormState extends State<SignInForm> {
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
                   color: AppColors.primaryColor,
-                  decoration: TextDecoration.underline,
                   decorationColor: AppColors.primaryColor,
                 ),
               ),
             ),
           ),
-          SizedBox(height: 28.h),
+          UIHelper.verticalSpace(28.h),
           CustomButton(
             label: 'Sign In',
             onPressed: _isLoading ? null : _handleSignIn,
             width: double.infinity,
-            height: 56,
+            height: 48.h,
           ),
-          SizedBox(height: 24.h),
+          UIHelper.verticalSpace(250.h),
           Center(
             child: RichText(
               text: TextSpan(
@@ -107,6 +108,7 @@ class _SignInFormState extends State<SignInForm> {
                 children: [
                   TextSpan(
                     text: 'Sign Up',
+                   // style: TextFontStyle.t13c,
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w600,

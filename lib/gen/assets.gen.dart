@@ -14,12 +14,15 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
+
   /// File path: assets/icons/notification_icon.png
   AssetGenImage get notificationIcon =>
       const AssetGenImage('assets/icons/notification_icon.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [notificationIcon];
+  List<AssetGenImage> get values => [logo, notificationIcon];
 }
 
 class $AssetsImagesGen {
@@ -29,12 +32,47 @@ class $AssetsImagesGen {
   AssetGenImage get errorImage =>
       const AssetGenImage('assets/images/error_image.png');
 
+  /// File path: assets/images/home_1.png
+  AssetGenImage get home1 => const AssetGenImage('assets/images/home_1.png');
+
+  /// File path: assets/images/home_2.png
+  AssetGenImage get home2 => const AssetGenImage('assets/images/home_2.png');
+
+  /// File path: assets/images/home_3.png
+  AssetGenImage get home3 => const AssetGenImage('assets/images/home_3.png');
+
+  /// File path: assets/images/onboarding_1.png
+  AssetGenImage get onboarding1 =>
+      const AssetGenImage('assets/images/onboarding_1.png');
+
+  /// File path: assets/images/onboarding_2.png
+  AssetGenImage get onboarding2 =>
+      const AssetGenImage('assets/images/onboarding_2.png');
+
+  /// File path: assets/images/onboarding_3.png
+  AssetGenImage get onboarding3 =>
+      const AssetGenImage('assets/images/onboarding_3.png');
+
   /// File path: assets/images/placeholder_image.jpeg
   AssetGenImage get placeholderImage =>
       const AssetGenImage('assets/images/placeholder_image.jpeg');
 
+  /// File path: assets/images/splash_background.jpg
+  AssetGenImage get splashBackground =>
+      const AssetGenImage('assets/images/splash_background.jpg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [errorImage, placeholderImage];
+  List<AssetGenImage> get values => [
+        errorImage,
+        home1,
+        home2,
+        home3,
+        onboarding1,
+        onboarding2,
+        onboarding3,
+        placeholderImage,
+        splashBackground
+      ];
 }
 
 class $AssetsLottieGen {

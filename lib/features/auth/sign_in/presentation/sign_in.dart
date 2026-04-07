@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:template_flutter/constants/text_font_style.dart';
+import '../../../../helpers/ui_helpers.dart';
 import 'widgets/sign_in_form.dart';
 import '/gen/colors.gen.dart';
 
@@ -36,25 +38,31 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              UIHelper.verticalSpace(50.h),
               // Header Section
-              Text(
-                'Welcome Back',
-                style: TextStyle(
-                  fontSize: 32.sp,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.c000000,
+              Center(
+                child: Text(
+                  'Welcome Back',
+                  style: TextStyle(
+                    fontSize: 32.sp,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.c000000,
+                  ),
                 ),
               ),
-              SizedBox(height: 8.h),
-              Text(
-                'Login to continue your healthy journey',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                  color: const Color(0xFF999999),
+              UIHelper.verticalSpace(8.h),
+              Center(
+                child: Text(
+                  'Login to continue your healthy journey',
+                  //  style: TextFontStyl,
+                  // style: TextStyle(
+                  //   fontSize: 14.sp,
+                  //   fontWeight: FontWeight.w400,
+                  //   color: const Color(0xFF999999),
+                  // ),
                 ),
               ),
-              SizedBox(height: 40.h),
+              UIHelper.verticalSpace(40.h),
               // Form Section
               SignInForm(
                 onSignIn: _handleSignIn,

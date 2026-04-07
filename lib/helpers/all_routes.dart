@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/sign_in.dart';
 
 import '../features/onboarding/presentation/onboarding_flow.dart';
-import '../welcome_screen.dart';
+
 
 void navigateToOnboarding(BuildContext context) {
   Timer(const Duration(seconds: 2), () {
@@ -43,7 +43,6 @@ final class Routes {
 
   // Onboarding Routes
   static const String onboardingScreen = '/onboarding';
-  static const String welcomeScreen = '/welcome';
 }
 
 final class RouteGenerator {
@@ -100,11 +99,6 @@ final class RouteGenerator {
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const OnboardingFlow())
             : _FadedTransitionRoute(widget: const OnboardingFlow(), settings: settings);
-
-      case Routes.welcomeScreen:
-        return defaultTargetPlatform == TargetPlatform.iOS
-            ? CupertinoPageRoute(builder: (context) => const WelcomeScreen())
-            : _FadedTransitionRoute(widget: const WelcomeScreen(), settings: settings);
 
       case Routes.signInScreen:
         return defaultTargetPlatform == TargetPlatform.iOS

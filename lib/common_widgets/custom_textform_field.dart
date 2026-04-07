@@ -97,7 +97,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             contentPadding: widget.contentPadding ??
                 EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
             filled: true,
-            fillColor: const Color(0xFFF5F5F5),
+            fillColor: AppColors.c33AF65.withValues(alpha: 0.1),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
               borderSide: const BorderSide(
