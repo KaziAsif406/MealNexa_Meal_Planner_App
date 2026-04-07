@@ -5,10 +5,10 @@ import 'navigation_service.dart';
 
 extension Loader on Future {
   Future<dynamic> waitingForFutureWithoutBg() async {
-    showDialog(
-      context: NavigationService.context!,
-      builder: (context) => loadingIndicatorCircle(context: context),
-    );
+    // showDialog(
+    //   context: NavigationService.context!,
+    //   builder: (context) => loadingIndicatorCircle(context: context),
+    // );
 
     try {
       // Wait for the original future to complete
