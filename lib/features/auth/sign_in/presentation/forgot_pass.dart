@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/widgets/forgot_pass_form.dart';
 // import 'package:template_flutter/constants/text_font_style.dart';
 import '../../../../helpers/ui_helpers.dart';
-import '../../../../helpers/all_routes.dart';
-import 'widgets/sign_in_form.dart';
 import '/gen/colors.gen.dart';
 
 class ForgotPassScreen extends StatefulWidget {
@@ -28,10 +26,19 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.arrow_back),
+                onPressed: () => Navigator.of(context).pop(),
+                // padding: EdgeInsets.zero,
+                // constraints: BoxConstraints(
+                //   minWidth: 0,
+                //   minHeight: 0,
+                // ),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: AppColors.c000000,
+                  size: 24.sp,
+                ),
               ),
-              UIHelper.verticalSpace(50.h),
+              UIHelper.verticalSpace(16.h),
               // Header Section
               Text(
                 'Enter E-mail',
@@ -41,7 +48,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                   color: AppColors.c000000,
                 ),
               ),
-              UIHelper.verticalSpace(40.h),
+              UIHelper.verticalSpace(10.h),
               // Form Section
               ForgotPassForm(
                 onResetCodeSent: _handleSendResetCode,

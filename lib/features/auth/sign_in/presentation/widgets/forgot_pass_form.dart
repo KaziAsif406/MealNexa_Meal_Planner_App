@@ -1,4 +1,4 @@
-import 'package:flutter/gestures.dart';
+// import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:template_flutter/constants/text_font_style.dart';
@@ -6,7 +6,7 @@ import 'package:template_flutter/helpers/ui_helpers.dart';
 import '/common_widgets/custom_button.dart';
 import '/common_widgets/custom_textform_field.dart';
 import '/constants/validator.dart';
-import '/gen/colors.gen.dart';
+// import '/gen/colors.gen.dart';
 
 class ForgotPassForm extends StatefulWidget {
   const ForgotPassForm({
@@ -52,7 +52,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           CustomTextFormField(
-            label: 'Email',
+            label: '',
             hintText: 'Enter your e-mail',
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
