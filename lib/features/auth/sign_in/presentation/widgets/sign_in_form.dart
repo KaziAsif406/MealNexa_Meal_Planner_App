@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:template_flutter/constants/text_font_style.dart';
+// import 'package:template_flutter/constants/text_font_style.dart';
 import 'package:template_flutter/helpers/ui_helpers.dart';
 import '/common_widgets/custom_button.dart';
 import '/common_widgets/custom_textform_field.dart';

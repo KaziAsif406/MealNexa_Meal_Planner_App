@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:template_flutter/constants/text_font_style.dart';
+// import 'package:template_flutter/constants/text_font_style.dart';
 import '../../../../helpers/ui_helpers.dart';
 import 'widgets/sign_in_form.dart';
 import '/gen/colors.gen.dart';
@@ -13,20 +13,11 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  void _handleSignIn() {
-    // TODO: Implement sign in logic
-    debugPrint('Sign in tapped');
-  }
+  void _handleSignIn() => debugPrint('Sign in tapped');
 
-  void _handleForgotPassword() {
-    // TODO: Navigate to forgot password screen
-    debugPrint('Forgot password tapped');
-  }
+  void _handleForgotPassword() => debugPrint('Forgot password tapped');
 
-  void _handleSignUp() {
-    // TODO: Navigate to sign up screen
-    debugPrint('Sign up tapped');
-  }
+  void _handleSignUp() => debugPrint('Sign up tapped');
 
   @override
   Widget build(BuildContext context) {
