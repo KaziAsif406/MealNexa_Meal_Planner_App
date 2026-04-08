@@ -55,13 +55,20 @@ class IngredientItem {
   final String quantity;
 }
 
-class FoodDetailsScreen extends StatelessWidget {
+class FoodDetailsScreen extends StatefulWidget {
   const FoodDetailsScreen({
     super.key,
     required this.details,
   });
 
   final FoodDetails details;
+
+  @override
+  State<FoodDetailsScreen> createState() => _FoodDetailsScreenState();
+}
+
+class _FoodDetailsScreenState extends State<FoodDetailsScreen> {
+  int _selectedTab = 0; // 0 for ingredients, 1 for instructions
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +90,7 @@ class FoodDetailsScreen extends StatelessWidget {
                   children: [
                     SizedBox(height: 20.h),
                     Text(
-                      details.title,
+                      widget.details.title,
                       style: TextStyle(
                         fontSize: 28.sp,
                         fontWeight: FontWeight.w700,
@@ -92,7 +99,7 @@ class FoodDetailsScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 10.h),
                     Text(
-                      details.subtitle,
+                      widget.details.subtitle,
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
@@ -107,17 +114,17 @@ class FoodDetailsScreen extends StatelessWidget {
                         _buildInfoChip(
                           iconAsset: 'assets/icons/time_overlay.png',
                           title: 'Time',
-                          value: details.time,
+                          value: widget.details.time,
                         ),
                         _buildInfoChip(
                           iconAsset: 'assets/icons/servings_overlay.png',
                           title: 'Servings',
-                          value: details.servings,
+                          value: widget.details.servings,
                         ),
                         _buildInfoChip(
                           iconAsset: 'assets/icons/calories_overlay.png',
                           title: 'Calories',
-                          value: details.calories,
+                          value: widget.details.calories,
                         ),
                       ],
                     ),
@@ -126,7 +133,7 @@ class FoodDetailsScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: FoodStat(
-                            value: details.protein,
+                            value: widget.details.protein,
                             label: 'Protein',
                             backgroundColor: const Color(0xFFE6F8EF),
                             valueColor: const Color(0xFF1C7A4E),
@@ -136,7 +143,7 @@ class FoodDetailsScreen extends StatelessWidget {
                         SizedBox(width: 12.w),
                         Expanded(
                           child: FoodStat(
-                            value: details.carbs,
+                            value: widget.details.carbs,
                             label: 'Carbs',
                             backgroundColor: const Color(0xFFF1EDFF),
                             valueColor: const Color(0xFF7D4DFF),
@@ -146,7 +153,7 @@ class FoodDetailsScreen extends StatelessWidget {
                         SizedBox(width: 12.w),
                         Expanded(
                           child: FoodStat(
-                            value: details.fat,
+                            value: widget.details.fat,
                             label: 'Fat',
                             backgroundColor: const Color(0xFFFFF2D7),
                             valueColor: const Color(0xFFD88B01),
@@ -158,29 +165,7 @@ class FoodDetailsScreen extends StatelessWidget {
                     SizedBox(height: 28.h),
                     _buildToggleTabs(),
                     SizedBox(height: 24.h),
-                    ...details.ingredientSections.map(
-                      (section) => Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            section.title,
-                            style: TextStyle(
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.c000000,
-                            ),
-                          ),
-                          SizedBox(height: 16.h),
-                          ...section.items.map(
-                            (item) => IngredientTile(
-                              title: item.name,
-                              quantity: item.quantity,
-                            ),
-                          ),
-                          SizedBox(height: 16.h),
-                        ],
-                      ),
-                    ),
+                    _selectedTab == 0 ? _buildIngredients() : _buildInstructions(),
                     SizedBox(height: 16.h),
                     SizedBox(
                       width: double.infinity,
@@ -208,6 +193,93 @@ class FoodDetailsScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildIngredients() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ...widget.details.ingredientSections.map(
+          (section) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                section.title,
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.c000000,
+                ),
+              ),
+              SizedBox(height: 16.h),
+              ...section.items.map(
+                (item) => IngredientTile(
+                  title: item.name,
+                  quantity: item.quantity,
+                ),
+              ),
+              SizedBox(height: 16.h),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildInstructions() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ...widget.details.instructions.asMap().entries.map(
+          (entry) {
+            int index = entry.key + 1;
+            String instruction = entry.value;
+            return Padding(
+              padding: EdgeInsets.only(bottom: 16.h),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 24.w,
+                    height: 24.w,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1C7A4E),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Text(
+                        index.toString(),
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 2.h),
+                      child: Text(
+                        instruction,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.c000000,
+                          height: 1.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+
   Widget _buildHeader(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
@@ -218,7 +290,7 @@ class FoodDetailsScreen extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              details.imagePath,
+              widget.details.imagePath,
               height: 280.h,
               fit: BoxFit.cover,
             ),
@@ -318,6 +390,10 @@ class FoodDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildToggleTabs() {
+    final ingredientCount = widget.details.ingredientSections
+        .fold<int>(0, (total, section) => total + section.items.length);
+    final instructionCount = widget.details.instructions.length;
+
     return Container(
       padding: EdgeInsets.all(6.w),
       decoration: BoxDecoration(
@@ -327,19 +403,28 @@ class FoodDetailsScreen extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(vertical: 14.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24.r),
-              ),
-              child: Center(
-                child: Text(
-                  'Ingredients (${details.ingredientSections.fold<int>(0, (total, section) => total + section.items.length)})',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.c000000,
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedTab = 0;
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 14.h),
+                decoration: BoxDecoration(
+                  color: _selectedTab == 0 ? Colors.white : Colors.transparent,
+                  borderRadius: BorderRadius.circular(24.r),
+                ),
+                child: Center(
+                  child: Text(
+                    'Ingredients ($ingredientCount)',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                      color: _selectedTab == 0
+                          ? AppColors.c000000
+                          : const Color(0xFF8C8C8C),
+                    ),
                   ),
                 ),
               ),
@@ -347,13 +432,29 @@ class FoodDetailsScreen extends StatelessWidget {
           ),
           SizedBox(width: 8.w),
           Expanded(
-            child: Center(
-              child: Text(
-                'Instructions (${details.instructions.length})',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  color: const Color(0xFF8C8C8C),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedTab = 1;
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 14.h),
+                decoration: BoxDecoration(
+                  color: _selectedTab == 1 ? Colors.white : Colors.transparent,
+                  borderRadius: BorderRadius.circular(24.r),
+                ),
+                child: Center(
+                  child: Text(
+                    'Instructions ($instructionCount)',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                      color: _selectedTab == 1
+                          ? AppColors.c000000
+                          : const Color(0xFF8C8C8C),
+                    ),
+                  ),
                 ),
               ),
             ),
