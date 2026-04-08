@@ -36,6 +36,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Text(
                   'Welcome Back',
                   style: TextStyle(
+                    fontFamily: 'Open Sans',
                     fontSize: 32.sp,
                     fontWeight: FontWeight.w700,
                     color: AppColors.c000000,
@@ -48,6 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   'Login to continue your healthy journey',
                   //  style: TextFontStyl,
                   style: TextStyle(
+                    fontFamily: 'Open Sans',
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,
                     color: AppColors.c1E1E1E.withValues(alpha: 0.5),
