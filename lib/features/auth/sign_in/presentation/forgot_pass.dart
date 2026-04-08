@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/widgets/forgot_pass_form.dart';
+import 'package:template_flutter/helpers/all_routes.dart';
 // import 'package:template_flutter/constants/text_font_style.dart';
 import '../../../../helpers/ui_helpers.dart';
 import '/gen/colors.gen.dart';
@@ -13,7 +14,9 @@ class ForgotPassScreen extends StatefulWidget {
 }
 
 class _ForgotPassScreenState extends State<ForgotPassScreen> {
-  void _handleSendResetCode() => debugPrint('Send reset code tapped');
+  void _handleSendResetCode() {
+    Navigator.pushNamed(context, Routes.otpScreen);
+  }
 
   @override
   Widget build(BuildContext context) {

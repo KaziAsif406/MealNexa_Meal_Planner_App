@@ -7,10 +7,10 @@ import 'package:flutter/foundation.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/forgot_pass.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/reset_pass.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/sign_in.dart';
+import 'package:template_flutter/features/auth/sign_in/presentation/verification.dart';
 import '../features/auth/sign_up/presentation/sign_up.dart';
 
 import '../features/onboarding/presentation/onboarding_flow.dart';
-
 
 void navigateToOnboarding(BuildContext context) {
   Timer(const Duration(seconds: 2), () {
@@ -19,7 +19,6 @@ void navigateToOnboarding(BuildContext context) {
     }
   });
 }
-
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -56,7 +55,6 @@ final class RouteGenerator {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       // Auth Routes
-   
 
       // case Routes.forgotPWScreen:
       //   return defaultTargetPlatform == TargetPlatform.iOS
@@ -101,30 +99,39 @@ final class RouteGenerator {
       case Routes.onboardingScreen:
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const OnboardingFlow())
-            : _FadedTransitionRoute(widget: const OnboardingFlow(), settings: settings);
+            : _FadedTransitionRoute(
+                widget: const OnboardingFlow(), settings: settings);
 
       case Routes.signInScreen:
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const SignInScreen())
-            : _FadedTransitionRoute(widget: const SignInScreen(), settings: settings);
+            : _FadedTransitionRoute(
+                widget: const SignInScreen(), settings: settings);
 
       case Routes.signUpScreen:
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const SignUpScreen())
-            : _FadedTransitionRoute(widget: const SignUpScreen(), settings: settings);
-
+            : _FadedTransitionRoute(
+                widget: const SignUpScreen(), settings: settings);
 
       case Routes.forgotPassScreen:
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const ForgotPassScreen())
-            : _FadedTransitionRoute(widget: const ForgotPassScreen(), settings: settings);
+            : _FadedTransitionRoute(
+                widget: const ForgotPassScreen(), settings: settings);
 
+      case Routes.otpScreen:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(
+                builder: (context) => const VerificationScreen())
+            : _FadedTransitionRoute(
+                widget: const VerificationScreen(), settings: settings);
 
       case Routes.setPassword:
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const ResetPassScreen())
-            : _FadedTransitionRoute(widget: const ResetPassScreen(), settings: settings);
-
+            : _FadedTransitionRoute(
+                widget: const ResetPassScreen(), settings: settings);
 
       default:
         return null;

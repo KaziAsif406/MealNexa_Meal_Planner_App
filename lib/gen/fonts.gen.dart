@@ -14,9 +14,9 @@ class FontFamily {
   /// Font family: DMSans
   static const String dMSans = 'DMSans';
 
+  /// Font family: Inter
+  static const String inter = 'Inter';
+
   /// Font family: Open Sans
   static const String openSans = 'Open Sans';
-
-  /// Font family: inter
-  static const String inter = 'inter';
 }

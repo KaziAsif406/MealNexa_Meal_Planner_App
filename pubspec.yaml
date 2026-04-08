@@ -73,3 +73,6 @@ flutter:
     - family: Open Sans
       fonts:
         - asset:  assets/fonts/OpenSans-Regular.ttf
+    - family: Inter
+      fonts:
+        - asset:  assets/fonts/Inter_28pt-Regular.ttf

@@ -47,11 +47,11 @@ class _SignInScreenState extends State<SignInScreen> {
                 child: Text(
                   'Login to continue your healthy journey',
                   //  style: TextFontStyl,
-                  // style: TextStyle(
-                  //   fontSize: 14.sp,
-                  //   fontWeight: FontWeight.w400,
-                  //   color: const Color(0xFF999999),
-                  // ),
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.c1E1E1E.withValues(alpha: 0.5),
+                  ),
                 ),
               ),
               UIHelper.verticalSpace(40.h),
