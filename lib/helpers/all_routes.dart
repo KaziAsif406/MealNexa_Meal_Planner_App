@@ -9,6 +9,7 @@ import 'package:template_flutter/features/auth/sign_in/presentation/reset_pass.d
 import 'package:template_flutter/features/auth/sign_in/presentation/sign_in.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/verification.dart';
 import 'package:template_flutter/features/home/presentation/home.dart';
+import 'package:template_flutter/features/preferences/presentation/preferences_screen.dart';
 import 'package:template_flutter/navigation_screen.dart';
 import '../features/auth/sign_up/presentation/sign_up.dart';
 
@@ -44,6 +45,7 @@ final class Routes {
   static const String homeScreen = '/home_screen';
   static const String navigationScreen = '/NavigationScreen';
   static const String profile = '/Profile';
+  static const String preferences = '/Preferences';
 
   // Onboarding Routes
   static const String onboardingScreen = '/onboarding';
@@ -145,6 +147,11 @@ final class RouteGenerator {
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const NavigationScreen())
             : _FadedTransitionRoute(widget: const NavigationScreen(), settings: settings);
+
+      case Routes.preferences:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(builder: (context) => const PreferencesScreen())
+            : _FadedTransitionRoute(widget: const PreferencesScreen(), settings: settings);
 
       default:
         return null;

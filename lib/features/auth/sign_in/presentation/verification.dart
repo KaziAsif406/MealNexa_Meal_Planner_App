@@ -150,7 +150,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
-                  color: AppColors.c000000.withOpacity(0.45),
+                  color: AppColors.c000000.withValues(alpha: 0.45),
                   height: 1.5,
                 ),
               ),
@@ -175,7 +175,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       style: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.c000000.withOpacity(0.45),
+                        color: AppColors.c000000.withValues(alpha: 0.45),
                       ),
                     ),
                     TextButton(

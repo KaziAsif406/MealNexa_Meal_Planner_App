@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '/common_widgets/custom_button.dart';
-import '/gen/colors.gen.dart';
+import 'package:template_flutter/constants/text_font_style.dart';
+import 'package:template_flutter/gen/colors.gen.dart';
+import 'package:template_flutter/common_widgets/custom_button.dart';
+import 'package:template_flutter/helpers/all_routes.dart';
 import 'widgets/preference_selector.dart';
 
 class PreferencesScreen extends StatefulWidget {
@@ -12,72 +14,38 @@ class PreferencesScreen extends StatefulWidget {
 }
 
 class _PreferencesScreenState extends State<PreferencesScreen> {
-  final Set<String> _dietaryPreferences = {};
-  final Set<String> _cuisineInterests = {};
-  final Set<String> _allergies = {};
+  final Set<String> _selectedDietaryPreferences = {};
+  final Set<String> _selectedCuisineInterests = {};
+  final Set<String> _selectedAllergies = {};
 
-  static const List<String> _dietaryOptions = [
-    'Vegan',
-    'Vegetarian',
-    'Keto',
-    'High Protein',
-    'Gluten Free',
-  ];
-
-  static const List<String> _cuisineOptions = [
-    'Italian',
-    'Mexican',
-    'Asian',
-    'Mediterranean',
-    'Indian',
-  ];
-
-  static const List<String> _allergyOptions = [
-    'Nuts',
-    'Dairy',
-    'Eggs',
-    'Shellfish',
-    'Soy',
-    'Gluten',
-  ];
-
-  void _toggleSelection(Set<String> selectedSet, String value) {
+  void _toggleDietaryPreference(String preference) {
     setState(() {
-      if (selectedSet.contains(value)) {
-        selectedSet.remove(value);
+      if (_selectedDietaryPreferences.contains(preference)) {
+        _selectedDietaryPreferences.remove(preference);
       } else {
-        selectedSet.add(value);
+        _selectedDietaryPreferences.add(preference);
       }
     });
   }
 
-  Widget _buildSection(String title, List<String> items, Set<String> selectedSet) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w700,
-            color: AppColors.c000000,
-          ),
-        ),
-        SizedBox(height: 16.h),
-        Wrap(
-          spacing: 12.w,
-          runSpacing: 12.h,
-          children: items.map((item) {
-            final bool selected = selectedSet.contains(item);
-            return PreferenceSelector(
-              label: item,
-              selected: selected,
-              onTap: () => _toggleSelection(selectedSet, item),
-            );
-          }).toList(),
-        ),
-      ],
-    );
+  void _toggleCuisineInterest(String cuisine) {
+    setState(() {
+      if (_selectedCuisineInterests.contains(cuisine)) {
+        _selectedCuisineInterests.remove(cuisine);
+      } else {
+        _selectedCuisineInterests.add(cuisine);
+      }
+    });
+  }
+
+  void _toggleAllergy(String allergy) {
+    setState(() {
+      if (_selectedAllergies.contains(allergy)) {
+        _selectedAllergies.remove(allergy);
+      } else {
+        _selectedAllergies.add(allergy);
+      }
+    });
   }
 
   @override
@@ -85,78 +53,186 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
     return Scaffold(
       backgroundColor: AppColors.scaffoldColor,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () => Navigator.maybePop(context),
-                child: Container(
-                  width: 42.w,
-                  height: 42.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
+        child: Column(
+          children: [
+            // Header with back button
+            Padding(
+              padding: EdgeInsets.all(16.w),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: AppColors.c0A0A0A,
+                      size: 24.sp,
+                    ),
                   ),
-                  child: Icon(
-                    Icons.arrow_back,
-                    size: 20.sp,
-                    color: AppColors.c000000,
-                  ),
-                ),
+                ],
               ),
-              SizedBox(height: 28.h),
-              Center(
+            ),
+            // Title and Subtitle
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Your Preferences',
+                    style: TextFontStyle.textStyle24c1E1E1EOpenSans600
+                  ),
+                  SizedBox(height: 8.h),
+                  Text(
+                    'Help us personalize your experience',
+                    style: TextFontStyle.textStyle14c1E1E1EOpenSans400
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 32.h),
+            // Content
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 24.w),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Dietary Preferences Section
                     Text(
-                      'Your Preferences',
-                      style: TextStyle(
-                        fontSize: 28.sp,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.c000000,
-                      ),
+                      'Dietary Preferences',
+                      style: TextFontStyle.textStyle18c1E1E1EOpenSans600,
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 16.h),
+                    Wrap(
+                      spacing: 12.w,
+                      runSpacing: 12.h,
+                      children: [
+                        PreferenceSelector(
+                          label: 'Vegan',
+                          isSelected: _selectedDietaryPreferences.contains('Vegan'),
+                          onTap: () => _toggleDietaryPreference('Vegan'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Vegetarian',
+                          isSelected: _selectedDietaryPreferences.contains('Vegetarian'),
+                          onTap: () => _toggleDietaryPreference('Vegetarian'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Keto',
+                          isSelected: _selectedDietaryPreferences.contains('Keto'),
+                          onTap: () => _toggleDietaryPreference('Keto'),
+                        ),
+                        PreferenceSelector(
+                          label: 'High Protein',
+                          isSelected: _selectedDietaryPreferences.contains('High Protein'),
+                          onTap: () => _toggleDietaryPreference('High Protein'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Gluten free',
+                          isSelected: _selectedDietaryPreferences.contains('Gluten free'),
+                          onTap: () => _toggleDietaryPreference('Gluten free'),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 32.h),
+                    // Cuisine Interests Section
                     Text(
-                      'Help us personalize your experience',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0xFF8B8B8B),
-                      ),
+                      'Cuisine Interests',
+                      style: TextFontStyle.textStyle18c1E1E1EOpenSans600,
                     ),
+                    SizedBox(height: 16.h),
+                    Wrap(
+                      spacing: 12.w,
+                      runSpacing: 12.h,
+                      children: [
+                        PreferenceSelector(
+                          label: 'Italian',
+                          isSelected: _selectedCuisineInterests.contains('Italian'),
+                          onTap: () => _toggleCuisineInterest('Italian'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Mexican',
+                          isSelected: _selectedCuisineInterests.contains('Mexican'),
+                          onTap: () => _toggleCuisineInterest('Mexican'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Asian',
+                          isSelected: _selectedCuisineInterests.contains('Asian'),
+                          onTap: () => _toggleCuisineInterest('Asian'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Mediterranean',
+                          isSelected: _selectedCuisineInterests.contains('Mediterranean'),
+                          onTap: () => _toggleCuisineInterest('Mediterranean'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Indian',
+                          isSelected: _selectedCuisineInterests.contains('Indian'),
+                          onTap: () => _toggleCuisineInterest('Indian'),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 32.h),
+                    // Allergies Section
+                    Text(
+                      'Allergies',
+                      style: TextFontStyle.textStyle18c1E1E1EOpenSans600,
+                    ),
+                    SizedBox(height: 16.h),
+                    Wrap(
+                      spacing: 12.w,
+                      runSpacing: 12.h,
+                      children: [
+                        PreferenceSelector(
+                          label: 'Nuts',
+                          isSelected: _selectedAllergies.contains('Nuts'),
+                          onTap: () => _toggleAllergy('Nuts'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Dairy',
+                          isSelected: _selectedAllergies.contains('Dairy'),
+                          onTap: () => _toggleAllergy('Dairy'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Eggs',
+                          isSelected: _selectedAllergies.contains('Eggs'),
+                          onTap: () => _toggleAllergy('Eggs'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Shellfish',
+                          isSelected: _selectedAllergies.contains('Shellfish'),
+                          onTap: () => _toggleAllergy('Shellfish'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Soy',
+                          isSelected: _selectedAllergies.contains('Soy'),
+                          onTap: () => _toggleAllergy('Soy'),
+                        ),
+                        PreferenceSelector(
+                          label: 'Gluten',
+                          isSelected: _selectedAllergies.contains('Gluten'),
+                          onTap: () => _toggleAllergy('Gluten'),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 32.h),
                   ],
                 ),
               ),
-              SizedBox(height: 34.h),
-              _buildSection('Dietary Preferences', _dietaryOptions, _dietaryPreferences),
-              SizedBox(height: 28.h),
-              _buildSection('Cuisine Interests', _cuisineOptions, _cuisineInterests),
-              SizedBox(height: 28.h),
-              _buildSection('Allergies', _allergyOptions, _allergies),
-              const Spacer(),
-              CustomButton(
+            ),
+            // Continue Button
+            Padding(
+              padding: EdgeInsets.all(24.w),
+              child: CustomButton(
                 label: 'Continue',
                 onPressed: () {
-                  // TODO: handle continue action
-                  debugPrint('Continue tapped');
+                  // Handle continue button press
+                  Navigator.pushReplacementNamed(context, Routes.homeScreen);
                 },
                 width: double.infinity,
-                height: 56.h,
               ),
-              SizedBox(height: 12.h),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
