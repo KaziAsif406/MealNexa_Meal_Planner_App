@@ -5,7 +5,7 @@ import '/gen/colors.gen.dart';
 class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
     super.key,
-    required this.label,
+    this.label,
     this.hintText,
     this.controller,
     this.validator,
@@ -20,7 +20,7 @@ class CustomTextFormField extends StatefulWidget {
     this.focusNode,
   });
 
-  final String label;
+  final String? label;
   final String? hintText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
@@ -58,15 +58,17 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.label,
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.c000000,
+        if (widget.label != null && widget.label!.isNotEmpty) ...[
+          Text(
+            widget.label!,
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+              color: AppColors.c000000,
+            ),
           ),
-        ),
-        SizedBox(height: 8.h),
+          SizedBox(height: 8.h),
+        ],
         TextFormField(
           controller: widget.controller,
           validator: widget.validator,

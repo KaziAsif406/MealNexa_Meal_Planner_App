@@ -8,6 +8,7 @@ import 'package:template_flutter/features/auth/sign_in/presentation/forgot_pass.
 import 'package:template_flutter/features/auth/sign_in/presentation/reset_pass.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/sign_in.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/verification.dart';
+import 'package:template_flutter/features/home/presentation/home.dart';
 import '../features/auth/sign_up/presentation/sign_up.dart';
 
 import '../features/onboarding/presentation/onboarding_flow.dart';
@@ -132,6 +133,11 @@ final class RouteGenerator {
             ? CupertinoPageRoute(builder: (context) => const ResetPassScreen())
             : _FadedTransitionRoute(
                 widget: const ResetPassScreen(), settings: settings);
+
+      case Routes.homeScreen:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(builder: (context) => const HomeScreen())
+            : _FadedTransitionRoute(widget: const HomeScreen(), settings: settings);
 
       default:
         return null;

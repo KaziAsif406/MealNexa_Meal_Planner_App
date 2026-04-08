@@ -1,166 +1,180 @@
-// import 'package:custom_navigation_bar/custom_navigation_bar.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:mollie/features/settings/presentation/settings_screen.dart';
-// import 'package:mollie/features/theme/presentation/theme_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// import '/gen/assets.gen.dart';
-// import 'features/home/presentaion/home_screen.dart';
-// import 'gen/colors.gen.dart';
-// import 'helpers/helper_methods.dart';
+import 'features/home/presentation/home.dart';
+import 'gen/colors.gen.dart';
+import 'helpers/helper_methods.dart';
 
-// class NavigationScreen extends StatefulWidget {
-//   final Widget? pageNum;
-//   const NavigationScreen({
-//     super.key,
-//     this.pageNum,
-//   });
+class NavigationScreen extends StatefulWidget {
+  final Widget? pageNum;
+  const NavigationScreen({
+    super.key,
+    this.pageNum,
+  });
 
-//   @override
-//   State<NavigationScreen> createState() => _NavigationScreenState();
-// }
+  @override
+  State<NavigationScreen> createState() => _NavigationScreenState();
+}
 
-// class _NavigationScreenState extends State<NavigationScreen> {
-//   int _currentIndex = 0;
+class _NavigationScreenState extends State<NavigationScreen> {
+  int _currentIndex = 0;
+  final bool _isFisrtBuild = true;
 
-//   final bool _isFisrtBuild = true;
-//   // bool _navigationOn = true;
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const _PlaceholderScreen(label: 'Schedule'),
+    const _PlaceholderScreen(label: 'Cart'),
+    const _PlaceholderScreen(label: 'Favorites'),
+    const _PlaceholderScreen(label: 'Profile'),
+  ];
 
-//   final List<StatefulWidget> _screens = [
-//     const HomeScreen(),
-//     const ThemeScreen(),
-//     const SettingsScreen(),
-//   ];
+  static const List<IconData> _navIcons = [
+    Icons.home,
+    Icons.calendar_month,
+    Icons.shopping_cart,
+    Icons.favorite_border,
+    Icons.person_outline,
+  ];
 
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
+  static const List<String> _navLabels = [
+    'Home',
+    '',
+    '',
+    '',
+    '',
+  ];
 
-//   @override
-//   Widget build(BuildContext context) {
-//     Object? args;
-//     StatefulWidget? screenPage;
-//     if (_isFisrtBuild) {
-//       args = ModalRoute.of(context)!.settings.arguments;
-//     }
-//     if (args != null) {
-//       screenPage = args as StatefulWidget;
-//       var newColorindex = -1;
+  @override
+  Widget build(BuildContext context) {
+    Object? args;
+    Widget? screenPage;
 
-//       for (var element in _screens) {
-//         newColorindex++;
-//         if (element.toString() == screenPage.toString()) {
-//           _currentIndex = newColorindex;
-//           break;
-//         }
-//       }
-//     }
+    if (_isFisrtBuild) {
+      args = ModalRoute.of(context)?.settings.arguments;
+    }
 
-//     return PopScope(
-//       canPop: false,
-//      onPopInvokedWithResult: (bool didPop, _)  async {
-//         showMaterialDialog(context);
-//       },
-//       child: Scaffold(
-//         backgroundColor: Colors.white,
-//         extendBody: true,
-//         // onDrawerChanged: (isOpened) => setState(() {
-//         //   _navigationOn = !isOpened;
-//         // }),
-//         body: Center(
-//           child: (screenPage != null)
-//               ? screenPage
-//               : _screens.elementAt(_currentIndex),
-//         ),
-//         bottomNavigationBar: Padding(
-//           padding: EdgeInsets.only(
-//               bottom: 16.h,
-//               right: 16.w,
-//               left: 16.w), // Add padding from the bottom
-//           child: Container(
-//             height: 66.h,
-//             decoration: BoxDecoration(
-//               color: AppColors.c02BF65,
-//               borderRadius: BorderRadius.all(Radius.circular(50.r)),
-//             ),
-//             child: Padding(
-//               padding: EdgeInsets.all(0.sp),
-//               child: CustomNavigationBar(
-//                 borderRadius: Radius.circular(50.r),
-//                 iconSize: 38.r,
-//                 selectedColor: Colors.red,
-//                 strokeColor: AppColors.c02BF65,
-//                 unSelectedColor: Colors.black,
-//                 backgroundColor:
-//                     AppColors.c02BF65, // Make background transparent
-//                 items: [
-//                   CustomNavigationBarItem(
-//                     icon: Stack(
-//                       alignment: Alignment.center,
-//                       children: [
-//                         _currentIndex == 0
-//                             ? Image.asset(Assets.icons.iconBang.path)
-//                             : const SizedBox.shrink(),
-//                         Center(
-//                           child: Image.asset(Assets.icons.generalIcon.path,
-//                               color: AppColors.cFFFFFF),
-//                         ),
-//                       ],
-//                     ),
-//                     title: const Text(
-//                       "General",
-//                       style: TextStyle(color: AppColors.cFFFFFF),
-//                     ),
-//                   ),
-//                   CustomNavigationBarItem(
-//                     icon: Stack(
-//                       alignment: Alignment.center,
-//                       children: [
-//                         _currentIndex == 1
-//                             ? Image.asset(Assets.icons.iconBang.path)
-//                             : const SizedBox.shrink(),
-//                         Center(
-//                           child: Image.asset(Assets.icons.themeIcon.path,
-//                               width: 18.w, color: AppColors.cFFFFFF),
-//                         ),
-//                       ],
-//                     ),
-//                     title: const Text(
-//                       "Theme",
-//                       style: TextStyle(color: AppColors.cFFFFFF),
-//                     ),
-//                   ),
-//                   CustomNavigationBarItem(
-//                     icon: Stack(
-//                       alignment: Alignment.center,
-//                       children: [
-//                         _currentIndex == 2
-//                             ? Image.asset(Assets.icons.iconBang.path)
-//                             : const SizedBox.shrink(),
-//                         Center(
-//                           child: Image.asset(Assets.icons.settingsIcon.path,
-//                               width: 28.w, color: AppColors.cFFFFFF),
-//                         ),
-//                       ],
-//                     ),
-//                     title: const Text(
-//                       "Settings",
-//                       style: TextStyle(color: AppColors.cFFFFFF),
-//                     ),
-//                   ),
-//                 ],
-//                 currentIndex: _currentIndex,
-//                 onTap: (index) {
-//                   setState(() {
-//                     _currentIndex = index;
-//                   });
-//                 },
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+    if (args != null && args is Widget) {
+      screenPage = args;
+    }
+
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (bool didPop, _) async {
+        showMaterialDialog(context);
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        extendBody: true,
+        body: Center(
+          child: screenPage ?? _screens.elementAt(_currentIndex),
+        ),
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.only(bottom: 16.h, left: 16.w, right: 16.w),
+          child: Container(
+            height: 76.h,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(32.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.08),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(5, (index) {
+                  final selected = index == _currentIndex;
+                  final iconColor = selected ? Colors.white : const Color(0xFF5A5A5A);
+                  final backgroundColor = selected ? AppColors.primaryColor : Colors.white;
+                  final borderColor = AppColors.primaryColor;
+
+                  return Expanded(
+                    child: index == 0
+                        ? Align(
+                            alignment: Alignment.centerLeft,
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _currentIndex = index;
+                                });
+                              },
+                              child: Container(
+                                height: 52.h,
+                                padding: EdgeInsets.symmetric(horizontal: 18.w),
+                                decoration: BoxDecoration(
+                                  color: backgroundColor,
+                                  borderRadius: BorderRadius.circular(28.r),
+                                  border: Border.all(color: borderColor, width: 1.5),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(_navIcons[index], color: iconColor, size: 24.sp),
+                                    SizedBox(width: 10.w),
+                                    Text(
+                                      _navLabels[index],
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: iconColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _currentIndex = index;
+                              });
+                            },
+                            child: Container(
+                              width: 44.w,
+                              height: 44.w,
+                              decoration: BoxDecoration(
+                                color: backgroundColor,
+                                borderRadius: BorderRadius.circular(16.r),
+                                border: Border.all(color: borderColor, width: 1.5),
+                              ),
+                              child: Icon(
+                                _navIcons[index],
+                                color: iconColor,
+                                size: 24.sp,
+                              ),
+                            ),
+                          ),
+                  );
+                }),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PlaceholderScreen extends StatelessWidget {
+  const _PlaceholderScreen({
+    required this.label,
+  });
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text(label, style: const TextStyle(fontSize: 20)),
+      ),
+    );
+  }
+}
