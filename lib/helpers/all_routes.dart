@@ -9,6 +9,7 @@ import 'package:template_flutter/features/auth/sign_in/presentation/reset_pass.d
 import 'package:template_flutter/features/auth/sign_in/presentation/sign_in.dart';
 import 'package:template_flutter/features/auth/sign_in/presentation/verification.dart';
 import 'package:template_flutter/features/home/presentation/home.dart';
+import 'package:template_flutter/navigation_screen.dart';
 import '../features/auth/sign_up/presentation/sign_up.dart';
 
 import '../features/onboarding/presentation/onboarding_flow.dart';
@@ -138,6 +139,12 @@ final class RouteGenerator {
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const HomeScreen())
             : _FadedTransitionRoute(widget: const HomeScreen(), settings: settings);
+
+
+      case Routes.navigationScreen:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(builder: (context) => const NavigationScreen())
+            : _FadedTransitionRoute(widget: const NavigationScreen(), settings: settings);
 
       default:
         return null;

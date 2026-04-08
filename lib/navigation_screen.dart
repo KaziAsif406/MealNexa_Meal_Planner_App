@@ -91,7 +91,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                   final selected = index == _currentIndex;
                   final iconColor = selected ? Colors.white : const Color(0xFF5A5A5A);
                   final backgroundColor = selected ? AppColors.primaryColor : Colors.white;
-                  final borderColor = AppColors.primaryColor;
+                  final borderColor = const Color.fromARGB(0, 11, 101, 81);
 
                   return Expanded(
                     child: index == 0

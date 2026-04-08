@@ -15,7 +15,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  void _handleSignIn() => Navigator.pushReplacementNamed(context, Routes.homeScreen);
+  void _handleSignIn() => Navigator.pushReplacementNamed(context, Routes.navigationScreen);
 
   void _handleForgotPassword() => Navigator.pushNamed(context, Routes.forgotPassScreen);
 
