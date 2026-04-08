@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:template_flutter/constants/text_font_style.dart';
+import '../../../../constants/text_font_style.dart';
 import '../../../../helpers/ui_helpers.dart';
 import '../../../../helpers/all_routes.dart';
 import 'widgets/sign_in_form.dart';
@@ -47,13 +48,13 @@ class _SignInScreenState extends State<SignInScreen> {
               Center(
                 child: Text(
                   'Login to continue your healthy journey',
-                  //  style: TextFontStyl,
-                  style: TextStyle(
-                    fontFamily: 'Open Sans',
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.c1E1E1E.withValues(alpha: 0.5),
-                  ),
+                    style: TextFontStyle.textStyle14c1E1E1EOpenSans400,
+                  // style: TextStyle(
+                  //   fontFamily: 'Open Sans',
+                  //   fontSize: 14.sp,
+                  //   fontWeight: FontWeight.w400,
+                  //   color: AppColors.c1E1E1E.withValues(alpha: 0.5),
+                  // ),
                 ),
               ),
               UIHelper.verticalSpace(40.h),

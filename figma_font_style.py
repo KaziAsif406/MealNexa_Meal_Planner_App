@@ -106,8 +106,8 @@ template = '''  static final textStyle{size}c{color}{fontName}{fontWeight} = Tex
   );'''
 
 # --- Figma API settings ---
-FIGMA_TOKEN = "figd_otRhbCFU4gOJT9CHqx7ODnI-IyP_izA_ZIFT-XRV"
-FILE_KEY = "H7mSHjGxxWJ8NjmlzgYZqx"
+FIGMA_TOKEN = "figd__6P6MF5yab9M4V83LMtkNXlK1HyrgJUK4L90SE66"
+FILE_KEY = "NHLCkwugQsnrQ8B3OGucH5"
 
 headers = {
     "X-Figma-Token": FIGMA_TOKEN
