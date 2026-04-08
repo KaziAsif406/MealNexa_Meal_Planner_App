@@ -142,7 +142,6 @@ final class RouteGenerator {
             ? CupertinoPageRoute(builder: (context) => const HomeScreen())
             : _FadedTransitionRoute(widget: const HomeScreen(), settings: settings);
 
-
       case Routes.navigationScreen:
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const NavigationScreen())

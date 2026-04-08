@@ -226,8 +226,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
               child: CustomButton(
                 label: 'Continue',
                 onPressed: () {
-                  // Handle continue button press
-                  Navigator.pushReplacementNamed(context, Routes.homeScreen);
+                  Navigator.pushReplacementNamed(context, Routes.navigationScreen);
                 },
                 width: double.infinity,
               ),
