@@ -46,9 +46,13 @@ class _MealPlannerScreenState extends State<MealPlannerScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Meal Planner',
-                style: TextFontStyle.textStyle24c0A0A0AInter700,
+              Row(
+                children: [
+                  Text(
+                    'Meal Planner',
+                    style: TextFontStyle.textStyle24c0A0A0AInter700,
+                  ),
+                ],
               ),
               SizedBox(height: 8.h),
               Text(
