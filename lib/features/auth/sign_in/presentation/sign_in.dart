@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:template_flutter/helpers/navigation_service.dart';
 // import 'package:template_flutter/constants/text_font_style.dart';
 import '../../../../constants/text_font_style.dart';
 import '../../../../helpers/ui_helpers.dart';
@@ -15,11 +16,11 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  void _handleSignIn() => Navigator.pushNamed(context, Routes.preferences);
+  void _handleSignIn() => NavigationService.navigateTo(Routes.preferences); //Navigator.pushNamed(context, Routes.preferences);
 
-  void _handleForgotPassword() => Navigator.pushNamed(context, Routes.forgotPassScreen);
+  void _handleForgotPassword() => NavigationService.navigateTo(Routes.forgotPassScreen);
 
-  void _handleSignUp() => Navigator.pushNamed(context, Routes.signUpScreen);
+  void _handleSignUp() => NavigationService.navigateTo(Routes.signUpScreen);
 
   @override
   Widget build(BuildContext context) {
