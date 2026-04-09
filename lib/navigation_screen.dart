@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:template_flutter/features/home/presentation/home.dart';
+import 'package:template_flutter/features/meal_planner/presentation/meal_planner.dart';
 import 'package:template_flutter/gen/colors.gen.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   static final List<_NavigationItem> _items = [
     _NavigationItem(icon: Icons.home_outlined, label: 'Home'),
-    _NavigationItem(icon: Icons.calendar_month_outlined, label: 'Schedule'),
+    _NavigationItem(icon: Icons.calendar_month_outlined, label: 'Meal Planner'),
     _NavigationItem(icon: Icons.shopping_cart_outlined, label: 'Cart'),
     _NavigationItem(icon: Icons.favorite_border, label: 'Favorites'),
     _NavigationItem(icon: Icons.person_outline, label: 'Profile'),
@@ -23,7 +24,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   static final List<Widget> _pages = [
     const HomeScreen(),
-    const _PlaceholderScreen(label: 'Schedule'),
+    const MealPlannerScreen(),
     const _PlaceholderScreen(label: 'Cart'),
     const _PlaceholderScreen(label: 'Favorites'),
     const _PlaceholderScreen(label: 'Profile'),
